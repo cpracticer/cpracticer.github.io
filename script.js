@@ -22,9 +22,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // 访问量计数器
     // 在实际应用中，这应该从服务器获取
     // 这里使用localStorage模拟
-    let visitorCount = localStorage.getItem('visitorCount') || 0;
-    visitorCount = parseInt(visitorCount) + 1;
-    localStorage.setItem('visitorCount', visitorCount);
+    
+    // 每次页面加载时清除之前的会话标记
+    sessionStorage.removeItem('visited');
+    
+    let visitorCount = localStorage.getItem('visitorCount');
+    
+    // 如果是第一次访问，初始化为1
+    if(visitorCount === null) {
+        visitorCount = 1;
+        localStorage.setItem('visitorCount', visitorCount);
+    } else {
+        // 检查本次会话是否已计入
+        if(!sessionStorage.getItem('visited')) {
+            // 增加访问计数
+            visitorCount = parseInt(visitorCount) + 1;
+            localStorage.setItem('visitorCount', visitorCount);
+            // 标记本次会话已被计入
+            sessionStorage.setItem('visited', 'true');
+        } else {
+            // 已计入的会话，仍然显示当前计数
+            visitorCount = parseInt(visitorCount);
+        }
+    }
     
     // 使用CountUp.js创建动画效果
     const countUpOptions = {
