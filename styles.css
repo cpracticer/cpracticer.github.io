@@ -53,6 +53,80 @@ a:hover {
     overflow: hidden;
 }
 
+/* 主导航 */
+.main-nav {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+.main-nav li {
+    margin: 5px 0;
+}
+
+.main-nav a {
+    display: block;
+    padding: 8px 15px;
+    color: var(--primary-color);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.main-nav a:hover {
+    background: var(--secondary-color);
+    color: white;
+    border-radius: 5px;
+}
+
+html[lang="zh"] .main-nav .lang-en {
+    display: none;
+}
+
+html[lang="en"] .main-nav .lang-zh {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0;
+        padding: 5px 0;
+    }
+    
+    .main-nav ul {
+        flex-direction: row;
+        justify-content: space-around;
+        overflow-x: auto;
+    }
+    
+    .main-nav li {
+        margin: 0;
+    }
+    
+    .main-nav a {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+}
+
 .language-switch button {
     border: none;
     background: transparent;

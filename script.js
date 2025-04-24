@@ -3,6 +3,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const htmlElement = document.documentElement;
     htmlElement.lang = 'zh';
     
+    // 平滑滚动导航
+    document.querySelectorAll('.main-nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
     // 语言切换功能
     const zhBtn = document.getElementById('zh-btn');
     const enBtn = document.getElementById('en-btn');
